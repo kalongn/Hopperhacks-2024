@@ -1,0 +1,12 @@
+.page-wrapper {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.stat-wrapper {
+    padding: 0 18%;
+    font-size: 1.25rem;
+}

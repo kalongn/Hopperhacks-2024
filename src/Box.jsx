@@ -1,19 +1,32 @@
-import styles from './Box.module.css'
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-function Box() {
+import styles from './Box.module.css';
 
-    function generateLetter() {
-        return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+function Box({ index, type, letter, letters }) {
+  const [avaliable, setAvaliable] = useState(type === "letter" ? true : false);
+
+  function onClickBehavior() {
+    if (type === "letter") {
+      if (avaliable) {
+        setAvaliable(false);
+      }
     }
-
-    return (
-        <div className={`${styles["border"]}`}>
-            <div>
-                {generateLetter()}
-            </div>
-        </div>
-    )
+  }
+  return (
+    <div className={`${styles["box-setting"]} ${styles["bttn"]} ${avaliable ? '' : styles["unavaliable"]}`} onClick={() => onClickBehavior()}>
+      <div>
+        {letter || ""}
+      </div>
+    </div>
+  );
 }
 
+Box.propTypes = {
+  letter: PropTypes.string,
+  type: PropTypes.string,
+  index: PropTypes.number,
+  letters: PropTypes.array
+};
 
 export default Box;

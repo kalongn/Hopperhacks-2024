@@ -1,0 +1,24 @@
+.nav-bar-wrapper {
+	display: flex;
+	padding: 16px;
+	position: relative;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid rgba(var(--color-black), .1);
+}
+
+.buttons {
+	height: 56px;
+	aspect-ratio: 1;
+	background-color: rgba(var(--color-black), .1);
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: filter 150ms ease-in-out;
+}
+
+.buttons:hover {
+	filter: invert(0.3);
+}
