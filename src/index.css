@@ -10,7 +10,7 @@ General display setting
 :root {
   font-family: "Poppins";
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
 
   --color-white: 255, 255, 255;
   --color-black: 6, 7, 9;
@@ -30,14 +30,22 @@ a {
   transition: filter 150ms ease-in-out;
 }
 
+html,
 body {
   height: 100%;
+}
+
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
   min-width: 100%;
   min-height: 100%;
+}
+
+body>* {
+  height: inherit;
 }
 
 h1 {}
