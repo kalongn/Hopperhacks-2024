@@ -124,7 +124,7 @@ function startGame() {
             clearInterval(timer);
             document.getElementById("finished-Score").innerText = score;
             document.getElementById("overlay-wrapper").style.display = "flex";
-            document.removeEventListener('keydown', handleKeyPress);
+            document.removeEventListener('keyup', handleKeyPress);
         }
     }, 1000);
 }
@@ -137,7 +137,7 @@ function resetButton() {
         document.getElementById('answer-tile-' + currentAnswerIndex).innerHTML = ``;
         document.getElementById('answer-tile-' + currentAnswerIndex).style.border = "1px solid rgba(var(--color-black), .3)"
         let index = listOfCharacterOrder.join("").lastIndexOf(currentCharacter);
-        while (document.getElementById('letter-tile-' + index).style.opacity == 1) {
+        while (parseFloat(document.getElementById('letter-tile-' + index).style.opacity) === 1) {
             index = listOfCharacterOrder.join("").lastIndexOf(currentCharacter, index - 1);
         }
         document.getElementById('letter-tile-' + index).style.opacity = 1;
@@ -179,11 +179,12 @@ function updateWords(length, answer) {
     for (let i = 0; i < length; i++) {
         let index = listOfCharacterOrder.join("").indexOf(answer.substring(i, i + 1));
         console.log(document.getElementById('letter-tile-' + index).style.opacity);
-        while (parseFloat(document.getElementById('letter-tile-' + index).style.opacity) == 1) {
+        while (parseFloat(document.getElementById('letter-tile-' + index).style.opacity) === 1) {
             index = listOfCharacterOrder.join("").indexOf(answer.substring(i, i + 1), index + 1);
             console.log(document.getElementById('letter-tile-' + index).style.opacity);
         }
         tempIndex.push(index);
+        document.getElementById('letter-tile-' + index).style.opacity = 1;
     }
     for (let i = 0; i < length; i++) {
         let newChar = generateLetter();
@@ -192,7 +193,6 @@ function updateWords(length, answer) {
         console.log(index + answer.substring(i, i + 1));
         listOfCharacterOrder[index] = newChar;
         document.getElementById('letter-tile-' + index).innerHTML = `<p>${newChar}<p/>`;
-        document.getElementById('letter-tile-' + index).style.opacity = 1;
         if (listOfCharacterAvaliable.has(newChar)) {
             listOfCharacterAvaliable.set(newChar, listOfCharacterAvaliable.get(newChar) + 1);
         } else {
