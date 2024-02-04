@@ -1,8 +1,0 @@
-.page-wrapper {
-    width: 100%;
-    border: 1px solid green;
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    gap: 12px;
-}
