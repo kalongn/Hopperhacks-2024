@@ -163,23 +163,15 @@ document.addEventListener('keyup', typing => {
         if (answer.length === 0) {
             return;
         }
+        for (let i = 0; i < answer.length; i++) {
+            document.getElementById('answer-tile-' + i).style.border = "1px solid rgba(var(--color-black), .3)"
+        }
         if (answer.length === 1) {
             timeLeft -= 5;
             displayTime();
+            updateWords(answer.length, answer);
             currentAnswerIndex = 0;
             answersCharacter = [];
-            document.getElementById('answer-tile-' + currentAnswerIndex).innerHTML = ``;
-            // listOfCharacterAvaliable.set(answer, listOfCharacterAvaliable.get(answer) > 0 ? listOfCharacterAvaliable.get(answer)- 1 : 0);
-            let newChar = generateLetter();
-            let index = listOfCharacterOrder.join("").indexOf(answer);
-            listOfCharacterOrder[index] = newChar;
-            document.getElementById('letter-tile-' + index).innerHTML = `<p>${newChar}<p/>`;
-            document.getElementById('letter-tile-' + index).style.opacity = 1;
-            if (listOfCharacterAvaliable.has(newChar)) {
-                listOfCharacterAvaliable.set(newChar, listOfCharacterAvaliable.get(newChar) + 1);
-            } else {
-                listOfCharacterAvaliable.set(newChar, 1);
-            }
         }
         if (!acceptedAnswer.includes(answer)) {
             for (let i = currentAnswerIndex - 1; i >= 0; i--) {
@@ -208,6 +200,7 @@ document.addEventListener('keyup', typing => {
             answersCharacter = [];
         }
         displayScore();
+
     }
     if (letter === 'Backspace' && currentAnswerIndex > 0) {
         currentAnswerIndex--;
