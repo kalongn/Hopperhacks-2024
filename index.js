@@ -175,14 +175,20 @@ function updateWords(length, answer) {
     for (let i = 0; i < length; i++) {
         document.getElementById('answer-tile-' + i).innerHTML = ``;
     }
-    let tempIndex = []
+    let tempIndex = [];
     for (let i = 0; i < length; i++) {
-        tempIndex.push(listOfCharacterOrder.join("").indexOf(answer.substring(i, i + 1)));
+        let index = listOfCharacterOrder.join("").indexOf(answer.substring(i, i + 1));
+        console.log(document.getElementById('letter-tile-' + index).style.opacity);
+        while (parseFloat(document.getElementById('letter-tile-' + index).style.opacity) == 1) {
+            index = listOfCharacterOrder.join("").indexOf(answer.substring(i, i + 1), index + 1);
+            console.log(document.getElementById('letter-tile-' + index).style.opacity);
+        }
+        tempIndex.push(index);
     }
     for (let i = 0; i < length; i++) {
         let newChar = generateLetter();
         let index = tempIndex[i];
-        console.log(length)
+        console.log(length);
         console.log(index + answer.substring(i, i + 1));
         listOfCharacterOrder[index] = newChar;
         document.getElementById('letter-tile-' + index).innerHTML = `<p>${newChar}<p/>`;
@@ -194,6 +200,7 @@ function updateWords(length, answer) {
         }
     }
 }
+
 
 function handleKeyPress(typing) {
     console.log(listOfCharacterAvaliable)
@@ -207,7 +214,7 @@ function handleKeyPress(typing) {
         }
         listOfCharacterAvaliable.set(letter, listOfCharacterAvaliable.get(letter) - 1);
         let index = listOfCharacterOrder.join("").indexOf(letter);
-        while (document.getElementById('letter-tile-' + index).style.opacity == 0.5) {
+        while (parseFloat(document.getElementById('letter-tile-' + index).style.opacity) == 0.5) {
             index = listOfCharacterOrder.join("").indexOf(letter, index + 1);
         }
         document.getElementById('letter-tile-' + index).style.opacity = 0.5;
@@ -260,13 +267,13 @@ function handleKeyPress(typing) {
         displayScore();
     }
     if (letter === 'Backspace' && currentAnswerIndex > 0) {
-        currentAnswerIndex--;
         let currentCharacter = answersCharacter.pop();
+        currentAnswerIndex--;
         listOfCharacterAvaliable.set(currentCharacter, listOfCharacterAvaliable.get(currentCharacter) + 1);
         document.getElementById('answer-tile-' + currentAnswerIndex).innerHTML = ``;
         document.getElementById('answer-tile-' + currentAnswerIndex).style.border = "1px solid rgba(var(--color-black), .3)"
         let index = listOfCharacterOrder.join("").indexOf(currentCharacter);
-        while (document.getElementById('letter-tile-' + index).style.opacity === 0.5) {
+        while (parseFloat(document.getElementById('letter-tile-' + index).style.opacity) === 1) {
             index = listOfCharacterOrder.join("").indexOf(currentCharacter, index + 1);
         }
         document.getElementById('letter-tile-' + index).style.opacity = 1;
