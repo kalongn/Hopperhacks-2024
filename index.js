@@ -34,39 +34,39 @@ function displayTime() {
 }
 
 function generateVowels() {
-    let vowels = ['a', 'e', 'i', 'o', 'u'];
+    let vowels = ['A', 'E', 'I', 'O', 'U'];
     let randomVowel = vowels[Math.floor(Math.random() * vowels.length)];
     return randomVowel;
 }
 
 function generateLetter() {
     let letter = {
-        'a': 8.4966,
-        'b': 2.0720,
-        'c': 4.5388,
-        'd': 3.3844,
-        'e': 12.702,
-        'f': 2.2284,
-        'g': 2.0327,
-        'h': 6.0949,
-        'i': 6.9509,
-        'j': 0.153,
-        'k': 0.7222,
-        'l': 4.0202,
-        'm': 2.4025,
-        'n': 6.7369,
-        'o': 7.5448,
-        'p': 1.929,
-        'q': 0.095,
-        'r': 5.3852,
-        's': 6.1936,
-        't': 9.0305,
-        'u': 2.8706,
-        'v': 0.9892,
-        'w': 2.4705,
-        'x': 0.1531,
-        'y': 1.7779,
-        'z': 0.0772
+        'A': 8.4966,
+        'B': 2.0720,
+        'C': 4.5388,
+        'D': 3.3844,
+        'E': 12.702,
+        'F': 2.2284,
+        'G': 2.0327,
+        'H': 6.0949,
+        'I': 6.9509,
+        'J': 0.153,
+        'K': 0.7222,
+        'L': 4.0202,
+        'M': 2.4025,
+        'N': 6.7369,
+        'O': 7.5448,
+        'P': 1.929,
+        'Q': 0.095,
+        'R': 5.3852,
+        'S': 6.1936,
+        'T': 9.0305,
+        'U': 2.8706,
+        'V': 0.9892,
+        'W': 2.4705,
+        'X': 0.1531,
+        'Y': 1.7779,
+        'Z': 0.0772
     }
     const totalProbability = Object.values(letter).reduce((sum, probability) => sum + probability, 0);
 
@@ -82,8 +82,8 @@ function generateLetter() {
         }
     }
 
-    // Fallback: return 'a' if the loop didn't find a suitable letter
-    return 'a';
+    // Fallback: return 'A' if the loop didn't find a suitable letter
+    return 'A';
 }
 
 function displayLetter() {
@@ -201,13 +201,19 @@ function updateWords(length, answer) {
     }
 }
 
+function simulateKeyPresses(button) {
+    const asciiValue = button.getAttribute('data-ascii');
+    const event = new KeyboardEvent('keyup', { key: asciiValue });
+    document.dispatchEvent(event);
+}
+
 
 function handleKeyPress(typing) {
     console.log(listOfCharacterAvaliable)
     if (!gameStarted) {
         startGame();
     }
-    let letter = typing.key;
+    let letter = typing.key.toUpperCase();
     if (listOfCharacterAvaliable.has(letter) && listOfCharacterAvaliable.get(letter) > 0) {
         if (currentAnswerIndex === amountOfLetter) {
             return;
@@ -222,7 +228,7 @@ function handleKeyPress(typing) {
         document.getElementById('answer-tile-' + currentAnswerIndex).innerHTML = `<p>${letter}<p/>`;
         currentAnswerIndex++;
     }
-    if (letter === 'Enter') {
+    if (letter === 'ENTER') {
         let answer = answersCharacter.join('');
         console.log(answer);
         if (answer.length === 0) {
@@ -238,7 +244,7 @@ function handleKeyPress(typing) {
             currentAnswerIndex = 0;
             answersCharacter = [];
         }
-        if (!acceptedAnswer.includes(answer)) {
+        if (!acceptedAnswer.includes(answer.toLowerCase())) {
             for (let i = currentAnswerIndex - 1; i >= 0; i--) {
                 document.getElementById('answer-tile-' + i).style.border = "1px solid red"
             }
@@ -266,7 +272,7 @@ function handleKeyPress(typing) {
         }
         displayScore();
     }
-    if (letter === 'Backspace' && currentAnswerIndex > 0) {
+    if (letter === 'BACKSPACE' && currentAnswerIndex > 0) {
         let currentCharacter = answersCharacter.pop();
         currentAnswerIndex--;
         listOfCharacterAvaliable.set(currentCharacter, listOfCharacterAvaliable.get(currentCharacter) + 1);
