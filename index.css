@@ -15,6 +15,7 @@ General display setting
     --color-white: 255, 255, 255;
     --color-black: 6, 7, 9;
     --color-purple: 127, 97, 172;
+    --color-light-purple: 209, 193, 232;
 
     --small-padding: 8px;
     --normal-padding: 16px;
@@ -150,16 +151,40 @@ main {
     justify-content: space-around;
     align-items: center;
 }
-
-.control-wrapper>button {
+button {
     padding: var(--small-padding) var(--normal-padding);
     color: rgba(var(--color-white), 1);
     background-color: rgba(var(--color-purple), 1);
     transition: filter 150ms ease-in-out;
 }
 
-.control-wrapper>button:hover {
+button:hover {
     filter: brightness(0.75);
+}
+
+#overlay-wrapper {
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: rgba(var(--color-white), 1);
+    font-size: 2rem;
+    font-weight: 700;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    cursor: pointer;
+    gap: 32px;
+}
+
+#overlay-wrapper span {
+    color: rgba(var(--color-light-purple), 1);
 }
 
 /* 

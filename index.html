@@ -16,6 +16,12 @@
 
 <body onload="startApp()" class="unselectable">
     <script defer type="text/javascript" src="./index.js"></script>
+    <div id="overlay-wrapper">
+        <div>You've earned <span id="finished-Score"></span> points</div>
+        <button onclick="endGame()">
+            Play Again?
+        </button>
+    </div>
     <header class="nav-bar-wrapper">
         <h1>Hopper Hacks <span>2024</span></h1>
     </header>
@@ -43,10 +49,10 @@
             <div class="tile" id="letter-tile-6"></div>
         </div>
         <div class="control-wrapper">
-            <button id="start-game-bttn" onclick="resetButton()">
+            <button onclick="resetButton()">
                 Reset
             </button>
-            <button id="start-game-bttn" onclick="restartButton()">
+            <button onclick="restartButton()">
                 Restart
             </button>
         </div>
