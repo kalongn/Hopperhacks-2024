@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="./img/Hopper_no_BG.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home | Hopper hacks 2024</title>
+    <title>Home | WordsSmith</title>
     <link rel="stylesheet" href="./index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,8 +22,40 @@
             Play Again?
         </button>
     </div>
+    <div id="help-button-wrapper" onclick="removeRules()">
+        <h3>How to Play:</h3>
+        <div>
+            <ol>
+                <li>You will be given <span style="color: greenyellow">7</span> letters to make words.</li>
+                <li>You need to form valid words with the 7 letters given</li>
+                <li>Used Characters will be replaced with new Characters</li>
+                <li>There will be a time limit of <span style="color: greenyellow">1 minute</span> to try and make as
+                    many words as possible.</li>
+                <li>Time bonuses:
+                    <ul>
+                        <li>2 letters: <span style="color: greenyellow">+0</span> seconds</li>
+                        <li>3-5 letters: <span style="color: greenyellow">+5</span> seconds</li>
+                        <li>6-7 letters: <span style="color: greenyellow">+15</span> seconds</li>
+                    </ul>
+                </li>
+                <li>If you cannot form a word, submit the most unvanted character
+                    <ul>
+                        <li><span style="color: red">-5</span> seconds</li>
+                    </ul>
+                </li>
+                <li>
+                    The point system will be as follows:
+                    <ul>
+                        <li>2 letter words: <span style="color: greenyellow">+5</span></li>
+                        <li>3-5 letter words: <span style="color: greenyellow">+10</span></li>
+                        <li>6-7 letter words: <span style="color: greenyellow">+20</span></li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
     <header class="nav-bar-wrapper">
-        <h1>Hopper Hacks <span>2024</span></h1>
+        <h1>Words<span>Smith</span></h1>
     </header>
     <main>
         <div class="statistic-wrapper">
@@ -87,8 +119,8 @@
                 <button data-ascii="C" onclick="simulateKeyPresses(this)">C</button>
                 <button data-ascii="V" onclick="simulateKeyPresses(this)">V</button>
                 <button data-ascii="B" onclick="simulateKeyPresses(this)">B</button>
-                <button data-ascii="N" onclick="simulateKeyPresses(this)">M</button>
-                <button data-ascii="M" onclick="simulateKeyPresses(this)">I</button>
+                <button data-ascii="N" onclick="simulateKeyPresses(this)">N</button>
+                <button data-ascii="M" onclick="simulateKeyPresses(this)">M</button>
                 <button data-ascii="BACKSPACE" onclick="simulateKeyPresses(this)">BACK</button>
             </div>
         </div>

@@ -207,6 +207,10 @@ function simulateKeyPresses(button) {
     document.dispatchEvent(event);
 }
 
+function removeRules() {
+    document.getElementById("help-button-wrapper").style.display = "none";
+}
+
 
 function handleKeyPress(typing) {
     console.log(listOfCharacterAvaliable)

@@ -2,6 +2,6 @@
 
 Credit:
 1. Ka Long Ngai (Programmer)
-2. Steven Chen (Idea Generator)
-3. Min Lin Li (Idea Generator)
+2. Steven Chen (Idea Generator, QA Tester, Video Creator)
+3. Min Lin Li (Idea Generator, QA Tester)
 4. Jackie Eng (Favicon Designer)
