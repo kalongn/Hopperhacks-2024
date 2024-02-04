@@ -208,9 +208,9 @@ document.addEventListener('keyup', typing => {
         listOfCharacterAvaliable.set(currentCharacter, listOfCharacterAvaliable.get(currentCharacter) + 1);
         document.getElementById('answer-tile-' + currentAnswerIndex).innerHTML = ``;
         document.getElementById('answer-tile-' + currentAnswerIndex).style.border = "1px solid rgba(var(--color-black), .3)"
-        let index = listOfCharacterOrder.join("").lastIndexOf(currentCharacter);
+        let index = listOfCharacterOrder.join("").indexOf(currentCharacter);
         while (document.getElementById('letter-tile-' + index).style.opacity == 1) {
-            index = listOfCharacterOrder.join("").lastIndexOf(currentCharacter, index - 1);
+            index = listOfCharacterOrder.join("").indexOf(currentCharacter, index + 1);
         }
         document.getElementById('letter-tile-' + index).style.opacity = 1;
     }
