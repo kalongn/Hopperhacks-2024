@@ -129,25 +129,6 @@ function startGame() {
     }, 1000);
 }
 
-function updateWords(length, answer) {
-    for (let i = 0; i < length; i++) {
-        document.getElementById('answer-tile-' + i).innerHTML = ``;
-    }
-    for (let i = 0; i < length; i++) {
-        let newChar = generateLetter();
-        let index = listOfCharacterOrder.join("").indexOf(answer.substring(i, i + 1));
-        console.log(index + answer.substring(i, i + 1));
-        listOfCharacterOrder[index] = newChar;
-        document.getElementById('letter-tile-' + index).innerHTML = `<p>${newChar}<p/>`;
-        document.getElementById('letter-tile-' + index).style.opacity = 1;
-        if (listOfCharacterAvaliable.has(newChar)) {
-            listOfCharacterAvaliable.set(newChar, listOfCharacterAvaliable.get(newChar) + 1);
-        } else {
-            listOfCharacterAvaliable.set(newChar, 1);
-        }
-    }
-}
-
 function resetButton() {
     while (currentAnswerIndex > 0) {
         currentAnswerIndex--;
@@ -188,6 +169,30 @@ function endGame() {
     restartButton();
     document.getElementById("overlay-wrapper").style.display = "none";
     document.addEventListener('keyup', handleKeyPress);
+}
+
+function updateWords(length, answer) {
+    for (let i = 0; i < length; i++) {
+        document.getElementById('answer-tile-' + i).innerHTML = ``;
+    }
+    let tempIndex = []
+    for (let i = 0; i < length; i++) {
+        tempIndex.push(listOfCharacterOrder.join("").indexOf(answer.substring(i, i + 1)));
+    }
+    for (let i = 0; i < length; i++) {
+        let newChar = generateLetter();
+        let index = tempIndex[i];
+        console.log(length)
+        console.log(index + answer.substring(i, i + 1));
+        listOfCharacterOrder[index] = newChar;
+        document.getElementById('letter-tile-' + index).innerHTML = `<p>${newChar}<p/>`;
+        document.getElementById('letter-tile-' + index).style.opacity = 1;
+        if (listOfCharacterAvaliable.has(newChar)) {
+            listOfCharacterAvaliable.set(newChar, listOfCharacterAvaliable.get(newChar) + 1);
+        } else {
+            listOfCharacterAvaliable.set(newChar, 1);
+        }
+    }
 }
 
 function handleKeyPress(typing) {
@@ -261,10 +266,9 @@ function handleKeyPress(typing) {
         document.getElementById('answer-tile-' + currentAnswerIndex).innerHTML = ``;
         document.getElementById('answer-tile-' + currentAnswerIndex).style.border = "1px solid rgba(var(--color-black), .3)"
         let index = listOfCharacterOrder.join("").indexOf(currentCharacter);
-        while (document.getElementById('letter-tile-' + index).style.opacity === 1) {
+        while (document.getElementById('letter-tile-' + index).style.opacity === 0.5) {
             index = listOfCharacterOrder.join("").indexOf(currentCharacter, index + 1);
         }
         document.getElementById('letter-tile-' + index).style.opacity = 1;
     }
-
 }
