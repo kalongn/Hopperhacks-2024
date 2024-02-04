@@ -94,6 +94,7 @@ function updateWords(length, answer) {
         let index = listOfCharacterOrder.join("").indexOf(answer.substring(i, i + 1));
         listOfCharacterOrder[index] = newChar;
         document.getElementById('letter-tile-' + index).innerHTML = `<p>${newChar}<p/>`;
+        document.getElementById('letter-tile-' + index).style.opacity = 1;
         if (listOfCharacterAvaliable.has(newChar)) {
             listOfCharacterAvaliable.set(newChar, listOfCharacterAvaliable.get(newChar) + 1);
         } else {
@@ -173,6 +174,7 @@ document.addEventListener('keyup', typing => {
             let index = listOfCharacterOrder.join("").indexOf(answer);
             listOfCharacterOrder[index] = newChar;
             document.getElementById('letter-tile-' + index).innerHTML = `<p>${newChar}<p/>`;
+            document.getElementById('letter-tile-' + index).style.opacity = 1;
             if (listOfCharacterAvaliable.has(newChar)) {
                 listOfCharacterAvaliable.set(newChar, listOfCharacterAvaliable.get(newChar) + 1);
             } else {
